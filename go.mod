@@ -1,5 +1,7 @@
-module github.com/ricardoarturo12/mysql
+module github.com/ricardoarturo12/mysql_go
 
 go 1.18
 
-require github.com/go-sql-driver/mysql v1.6.0 // indirect
+require github.com/go-sql-driver/mysql v1.6.0
+
+require github.com/joho/godotenv v1.4.0 // indirect

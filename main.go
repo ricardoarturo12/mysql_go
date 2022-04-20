@@ -8,6 +8,7 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -105,18 +106,23 @@ func connection(config Config) (*sql.DB, error) {
 }
 
 func main() {
+	err := godotenv.Load(".env")
+	if err != nil {
+    	log.Fatalf("Error loading .env file")
+	}
 	config := Config{
 		ServerName: os.Getenv("ServerName"),
 		User:       os.Getenv("User"),
 		Password:   os.Getenv("Password"),
 		DB:         os.Getenv("DB"),
 	}
+	fmt.Println(os.Getenv("ServerName"))
 	conn, err := connection(config)
 	if err != nil {
 		log.Fatal(err)
 	}
-	createTable(conn)
-	createUser(conn)
-	deleteUser(conn)
+	// createTable(conn)
+	// createUser(conn)
+	// deleteUser(conn)
 	allUsers(conn)
 }
